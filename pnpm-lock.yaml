@@ -17,8 +17,8 @@ dependencies:
     specifier: 10.4.14
     version: 10.4.14(postcss@8.4.21)
   drizzle-orm:
-    specifier: ^0.23.10
-    version: 0.23.10(@neondatabase/serverless@0.2.10)
+    specifier: ^0.25.3
+    version: 0.25.3(@neondatabase/serverless@0.2.10)
   eslint:
     specifier: 8.38.0
     version: 8.38.0
@@ -52,11 +52,11 @@ dependencies:
 
 devDependencies:
   drizzle-kit:
-    specifier: ^0.17.4
-    version: 0.17.4
+    specifier: ^0.17.6
+    version: 0.17.6
   eslint-plugin-prettier:
     specifier: ^4.2.1
-    version: 4.2.1(eslint@8.38.0)(prettier@2.8.7)
+    version: 4.2.1(eslint@8.38.0)(prettier@2.8.8)
 
 packages:
 
@@ -813,8 +813,8 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit@0.17.4:
-    resolution: {integrity: sha512-9OuHsZBxS1IkWnF9vFeTWR5XH9UCv4SclfPaFt7he8TPVzDka5vpGmhNh9Oaj+OZg6Pf4PSV2Yt8X3c44ayHVA==}
+  /drizzle-kit@0.17.6:
+    resolution: {integrity: sha512-diNslu/ItzLv+++7l2noevXaCOrsfDXv+ZxMJWOy061Gs1BeEhP0t+mBKqeOPy8LsEo0aitNKOe+gPltEScmWQ==}
     hasBin: true
     dependencies:
       camelcase: 7.0.1
@@ -830,8 +830,8 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.23.10(@neondatabase/serverless@0.2.10):
-    resolution: {integrity: sha512-JCmLGwuJRn546/fg8ndKhtti2F5h1VSwRWrmEcS0Nc8Dp8hjE4lrv1kpF1itcJviAQY+HmleYj3UCFqpr5sF6w==}
+  /drizzle-orm@0.25.3(@neondatabase/serverless@0.2.10):
+    resolution: {integrity: sha512-0LX4Tjh3+3zm8E9T/h+ayj/3KEzNPItpONHfKnKOzBCjW9C1X0T7uUuRdPE+ssXIVLNuk6rvKCKTL3o9caxnKg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -1394,7 +1394,7 @@ packages:
       semver: 6.3.0
     dev: false
 
-  /eslint-plugin-prettier@4.2.1(eslint@8.38.0)(prettier@2.8.7):
+  /eslint-plugin-prettier@4.2.1(eslint@8.38.0)(prettier@2.8.8):
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -1406,7 +1406,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.38.0
-      prettier: 2.8.7
+      prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -2574,8 +2574,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier@2.8.7:
-    resolution: {integrity: sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==}
+  /prettier@2.8.8:
+    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
