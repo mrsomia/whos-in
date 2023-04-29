@@ -11,9 +11,13 @@ export default function Page() {
    async function signIn() {
       const r = await fetch("/api/signin", {
         method: "POST",
-        body: JSON.stringify({ email })
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
       })
       console.log(r)
+      console.log({ body: await r.json() })
     }
     signIn()
   }
@@ -25,7 +29,7 @@ export default function Page() {
         <form className="flex flex-col justify-center "
           onSubmit={(e) => handleSubmit(e)}
           >
-          <label for="email" />
+          <label htmlFor="email" />
           <input className="border-black border-2" type="email" name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
