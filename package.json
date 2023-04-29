@@ -10,6 +10,8 @@
     "db:generate": "drizzle-kit generate:pg --out src/db/migrations --schema src/db/schema.ts"
   },
   "dependencies": {
+    "@lucia-auth/adapter-postgresql": "^1.0.0",
+    "@lucia-auth/tokens": "^1.0.1",
     "@neondatabase/serverless": "^0.2.10",
     "@types/node": "18.15.11",
     "@types/react": "18.0.34",
@@ -17,9 +19,11 @@
     "autoprefixer": "10.4.14",
     "drizzle-orm": "^0.25.3",
     "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
-    "next": "13.3.0",
+    "eslint-config-next": "13.3.1",
+    "lucia-auth": "^1.4.0",
+    "next": "13.3.1",
     "next-auth": "^4.22.0",
+    "pg": "^8.10.0",
     "postcss": "8.4.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -28,6 +32,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/pg": "^8.6.6",
     "drizzle-kit": "^0.17.6",
     "eslint-plugin-prettier": "^4.2.1"
   }
