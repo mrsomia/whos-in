@@ -1,20 +1,40 @@
-import { eq } from "drizzle-orm/expressions";
-import { drizzle } from "drizzle-orm/node-postgres";
 import {
-  integer,
   pgTable,
-  serial,
 	uuid,
   text,
   timestamp,
   varchar,
   pgEnum,
+  bigint,
+  boolean,
 } from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm/sql";
-import { InferModel } from "drizzle-orm";
+
+export const authUser = pgTable("auth_user", {
+	id: varchar("id", {
+		length: 15 // change this when using custom user ids
+	}).primaryKey(),
+	// other user attributes
+  email: varchar("email", { length: 256 }),
+});
+
+export const session = pgTable("auth_session", {
+	id: varchar("id", { length: 128 }).primaryKey(),
+	userId: varchar("user_id", { length: 15 }).notNull().references(() => authUser.id),
+	activeExpires: bigint("active_expires", { mode: "number" }).notNull(),
+	idleExpires: bigint("idle_expires", { mode: "number" }).notNull()
+});
+
+export const key = pgTable("auth_session", {
+	id: varchar("id", { length: 255 }).primaryKey(),
+	userId: varchar("user_id", { length: 15 }).notNull().references(() => authUser.id),
+	primaryKey: boolean("primary_key").notNull(),
+	hashedPassword: varchar("hashed_password", { length: 255 })
+});
+
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey(),
+  authId: varchar("auth_user_id").references(() => authUser.id),
   fullName: text("full_name").notNull(),
   phone: varchar("phone", { length: 20 }).notNull(),
   email: text("email").notNull(),
@@ -28,9 +48,9 @@ export const users = pgTable("users", {
 // Also to track the order with which they respond/timestamp?
 
 export const usersGoingToEvent = pgTable("users_going_to_event", {
-  id: uuid("id").primaryKey(),
-  userId: uuid("user_id").references(() => users.id).notNull(),
-  eventId: uuid("event_id").references(() => events.id).notNull(),
+  userId: uuid("user_id").references(() => users.id, { onDelete: "cascade" }),
+  eventId: uuid("event_id").references(() => events.id, { onDelete: "cascade" }),
+  confirmedAt: timestamp("confirmed_at").defaultNow().notNull(),
 })
 
 export const events = pgTable("events", {
@@ -43,14 +63,14 @@ export const events = pgTable("events", {
 
 export const groups = pgTable("groups", {
   id: uuid("id").primaryKey(),
+  name: varchar("name", { length: 256 }).notNull(),
 })
 
-const roleEnum = pgEnum('role', ['member', 'admin', 'owner']);
+export const roleEnum = pgEnum('role', ['member', 'admin', 'owner']);
 
 export const usersToGroups = pgTable("users_to_groups", {
-  id: uuid("id").primaryKey(),
-  userId: uuid("user_id").references(() => users.id).notNull(),
-  groupId: uuid("group_id").references(() => groups.id).notNull(),
+  userId: uuid("user_id").references(() => users.id, { onDelete: "cascade" }),
+  groupId: uuid("group_id").references(() => groups.id, { onDelete: "cascade" }),
   role: roleEnum("role").notNull(),
 })
 
