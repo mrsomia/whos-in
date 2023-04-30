@@ -4,7 +4,7 @@ import { otpToken } from "$/lib/lucia";
 import { db } from '$/db/db';
 import { authUser } from '$/db/schema';
 import { eq } from "drizzle-orm"
-import { redirect } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
 function sendEmail(email: string, {
   otp
@@ -57,5 +57,5 @@ export async function POST(request: Request) {
     otp: otp.toString()
   });
   
-  redirect(`/signin/${user.userId}/code`)
+  return Response.json({ userId: user.userId })
 }
