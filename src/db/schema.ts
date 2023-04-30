@@ -14,7 +14,7 @@ export const authUser = pgTable("auth_user", {
 		length: 15 // change this when using custom user ids
 	}).primaryKey(),
 	// other user attributes
-  email: varchar("email", { length: 256 }),
+  email: varchar("email", { length: 256 }).notNull(),
 });
 
 export const session = pgTable("auth_session", {
@@ -24,11 +24,12 @@ export const session = pgTable("auth_session", {
 	idleExpires: bigint("idle_expires", { mode: "number" }).notNull()
 });
 
-export const key = pgTable("auth_session", {
+export const key = pgTable("auth_key", {
 	id: varchar("id", { length: 255 }).primaryKey(),
 	userId: varchar("user_id", { length: 15 }).notNull().references(() => authUser.id),
 	primaryKey: boolean("primary_key").notNull(),
-	hashedPassword: varchar("hashed_password", { length: 255 })
+  expiresAt: bigint("expires", { mode: "number" }),
+	hashedPassword: varchar("hashed_password", { length: 255 }),
 });
 
 
