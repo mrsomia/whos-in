@@ -6,7 +6,7 @@ END $$;
 
 CREATE TABLE IF NOT EXISTS "auth_user" (
 	"id" varchar(15) PRIMARY KEY NOT NULL,
-	"email" varchar(256)
+	"email" varchar(256) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "events" (
@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS "events" (
 CREATE TABLE IF NOT EXISTS "groups" (
 	"id" uuid PRIMARY KEY NOT NULL,
 	"name" varchar(256) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "auth_key" (
+	"id" varchar(255) PRIMARY KEY NOT NULL,
+	"user_id" varchar(15) NOT NULL,
+	"primary_key" boolean NOT NULL,
+	"expires" bigint,
+	"hashed_password" varchar(255)
 );
 
 CREATE TABLE IF NOT EXISTS "auth_session" (
@@ -53,6 +61,12 @@ CREATE TABLE IF NOT EXISTS "users_to_groups" (
 
 DO $$ BEGIN
  ALTER TABLE "events" ADD CONSTRAINT "events_group_id_groups_id_fk" FOREIGN KEY ("group_id") REFERENCES "groups"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "auth_key" ADD CONSTRAINT "auth_key_user_id_auth_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "auth_user"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
