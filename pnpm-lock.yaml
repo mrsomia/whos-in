@@ -3,10 +3,10 @@ lockfileVersion: '6.0'
 dependencies:
   '@lucia-auth/adapter-postgresql':
     specifier: ^1.0.0
-    version: 1.0.0(lucia-auth@1.4.0)(pg@8.10.0)
+    version: 1.0.0(lucia-auth@1.5.0)(pg@8.10.0)
   '@lucia-auth/tokens':
     specifier: ^1.0.1
-    version: 1.0.1(lucia-auth@1.4.0)
+    version: 1.0.1(lucia-auth@1.5.0)
   '@neondatabase/serverless':
     specifier: ^0.2.10
     version: 0.2.10
@@ -32,8 +32,8 @@ dependencies:
     specifier: 13.3.1
     version: 13.3.1(eslint@8.38.0)(typescript@5.0.4)
   lucia-auth:
-    specifier: ^1.4.0
-    version: 1.4.0
+    specifier: ^1.5.0
+    version: 1.5.0
   next:
     specifier: 13.3.1
     version: 13.3.1(react-dom@18.2.0)(react@18.2.0)
@@ -184,7 +184,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: false
 
-  /@lucia-auth/adapter-postgresql@1.0.0(lucia-auth@1.4.0)(pg@8.10.0):
+  /@lucia-auth/adapter-postgresql@1.0.0(lucia-auth@1.5.0)(pg@8.10.0):
     resolution: {integrity: sha512-IlH/iEqZO7Pu5EgKb29kG/iBP++i8cUnJTOczGW6H3WXpWsdi2NEPB1zc+KFkwiGrYyO8IpH+HH1/pIF3F4eDw==}
     peerDependencies:
       lucia-auth: ^1.4.0
@@ -193,16 +193,16 @@ packages:
       pg:
         optional: true
     dependencies:
-      lucia-auth: 1.4.0
+      lucia-auth: 1.5.0
       pg: 8.10.0
     dev: false
 
-  /@lucia-auth/tokens@1.0.1(lucia-auth@1.4.0):
+  /@lucia-auth/tokens@1.0.1(lucia-auth@1.5.0):
     resolution: {integrity: sha512-7oMdJias2W1Ta/LiCKxa5fCV7E+NIRuw02RHkaxwAN/CL/T4ew2omEBVOkpHn3KJTHMNdPlDfZ5ZT0HyIrPHbw==}
     peerDependencies:
       lucia-auth: 1.x
     dependencies:
-      lucia-auth: 1.4.0
+      lucia-auth: 1.5.0
     dev: false
 
   /@neondatabase/serverless@0.2.10:
@@ -2190,8 +2190,8 @@ packages:
       es5-ext: 0.10.62
     dev: true
 
-  /lucia-auth@1.4.0:
-    resolution: {integrity: sha512-+8DkgTOFEcs4IeXPWEvZUQSfRyG581xjeUajJ0gqcO556Oa9FWapoRQlZO11J+QYXdAnGw02vql/9y4qrfH8uA==}
+  /lucia-auth@1.5.0:
+    resolution: {integrity: sha512-lLgLvyJcCjK+dYwJrgzPWGjT+YGgl7JF13TahXKozf/C3KkX/fFzOAUkY0h5xnm585lJE5BBrQIXAXa+rDzW6g==}
     dev: false
 
   /memoizee@0.4.15:
