@@ -3,7 +3,8 @@ import { auth } from "$/lib/lucia"
 import { otpToken } from "$/lib/lucia";
 import { db } from '$/db/db';
 import { authUser } from '$/db/schema';
-import { eq, InferModel } from "drizzle-orm"
+import { eq } from "drizzle-orm"
+import { redirect } from 'next/navigation';
 
 function sendEmail(email: string, {
   otp
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
       },
     })
   }
+  
   // Find user
   let user
   user = await db.select({
@@ -36,6 +38,7 @@ export async function POST(request: Request) {
   user = user.length ? user[0] : null
 
   if (!user) {
+    // Create user
     user = await auth.createUser({
     primaryKey: null,
     attributes: {
@@ -44,18 +47,15 @@ export async function POST(request: Request) {
   })
 
   }
-  
-  // Create user
-  
+
   console.log(user)
 
+  // create a single use token
+  const otp = await otpToken.issue(user.userId);
 
-  // create a use token
-    const otp = await otpToken.issue(user.userId);
-
-    sendEmail(email, {
-      otp: otp.toString()
-    });
+  sendEmail(email, {
+    otp: otp.toString()
+  });
   
-  return new Response('Hello, Next.js!')
+  redirect(`/signin/${user.userId}/code`)
 }
