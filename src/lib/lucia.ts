@@ -1,6 +1,6 @@
 import lucia from 'lucia-auth'
 import { pg } from '@lucia-auth/adapter-postgresql'
-import { idToken } from "@lucia-auth/tokens";
+import { passwordToken } from "@lucia-auth/tokens";
 import { pool } from "$/db/db"
 import "lucia-auth/polyfill/node";
 import { web } from "lucia-auth/middleware"
@@ -18,7 +18,7 @@ export const auth = lucia({
 })
 
 
-export const otpToken = idToken(auth, "otp", {
+export const otpToken = passwordToken(auth, "otp", {
 	expiresIn: 60 * 10,// expiration in 10 mins,
 	length: 6 // defualt is 8
 });
