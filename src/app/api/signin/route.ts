@@ -53,9 +53,9 @@ export async function POST(request: Request) {
   // create a single use token
   const otp = await otpToken.issue(user.userId);
 
-  sendEmail(email, {
-    otp: otp.toString()
-  });
+  sendEmail(email, { otp: otp.toString() })
+
+  // const request = new Request();
   
-  return Response.json({ userId: user.userId })
+  return NextResponse.json({ userId: user.userId })
 }
