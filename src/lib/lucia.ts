@@ -3,12 +3,12 @@ import { pg } from '@lucia-auth/adapter-postgresql'
 import { idToken } from "@lucia-auth/tokens";
 import { pool } from "$/db/db"
 import "lucia-auth/polyfill/node";
-import { node } from "lucia-auth/middleware"
+import { web } from "lucia-auth/middleware"
 
 export const auth = lucia({
   adapter: pg(pool),
   env: process.env.NODE_ENV == "production" ? "PROD" : "DEV",
-  middleware: node(),
+  middleware: web(),
   transformDatabaseUser: (userData) => {
     return {
       userId: userData.id,
