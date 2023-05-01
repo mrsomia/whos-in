@@ -46,26 +46,21 @@ export async function POST(request: Request) {
   user = user.length ? user[0] : null;
 
   if (!user) {
-    return new Response(JSON.stringify({ message: "Failed to parse code" }), {
-      status: 400,
+    return new Response(JSON.stringify({ message: "Unable to find user" }), {
+      status: 404,
       headers: {
         "Content-Type": "application/json",
       },
     });
   }
 
-  // TODO: Remove
-  console.log(user);
-
   const headers = new Headers();
   const authRequest = auth.handleRequest(request, headers);
   // ...
 
   try {
-    console.log("authorising");
     const token = await otpToken.validate(code, user.userId);
     const session = await auth.createSession(user.userId);
-    console.log({ session });
     authRequest.setSession(session);
 
     // make sure to invalidate the session
@@ -79,17 +74,14 @@ export async function POST(request: Request) {
     if (e instanceof LuciaTokenError && e.message === "INVALID_TOKEN") {
       // invalid password
       console.log("INVALID_TOKEN");
+      return new Response("Invalid Token", { status: 403 });
     }
     console.error(e);
   }
 
-  console.log({ headers });
-  console.log("\n");
-
   const response = new Response(null, {
     headers,
   });
-  console.log({ response });
 
   return response;
 }
