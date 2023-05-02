@@ -1,7 +1,12 @@
-import { AuthorisedUser } from "$/components/Providers";
+import { AuthorisedUser, SetUser } from "$/components/Providers";
 import { useContext } from "react";
 
 export function useUser() {
-  const { user, setUser } = useContext(AuthorisedUser);
+  const user = useContext(AuthorisedUser);
   return user;
+}
+
+export function useSetUser() {
+  const dispathUser = useContext(SetUser);
+  return dispathUser;
 }
