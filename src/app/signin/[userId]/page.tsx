@@ -24,6 +24,7 @@ export default function Page({ params }: { params: { userId: string } }) {
           // const res = await r.json();
           console.log("sign in successful");
           console.log(r);
+          router.push("/dashboard");
         } else {
           console.log(r);
           console.log(r.json());
