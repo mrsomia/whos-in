@@ -1,12 +1,24 @@
 // eslint-disable-next-line prettier/prettier
 "use client"
 
+import { useSetUser, useUser } from "$/hooks/auth";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 export default function Page({ params }: { params: { userId: string } }) {
   const router = useRouter();
   const [code, setCode] = useState("");
+  const dispatchUser = useSetUser();
+  const user = useUser();
+
+  if (user !== null) {
+    router.push("/dashboard");
+    throw new Error("should not reach, should redirect to dashbord");
+  }
+
+  if (dispatchUser === null) {
+    throw new Error("dispatchUser is null");
+  }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +36,7 @@ export default function Page({ params }: { params: { userId: string } }) {
           // const res = await r.json();
           console.log("sign in successful");
           console.log(r);
-          router.push("/dashboard");
+          const j = await r.json();
         } else {
           console.log(r);
           console.log(r.json());

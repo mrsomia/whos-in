@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     console.error(e);
   }
 
-  const response = new Response(null, {
+  const response = new Response(JSON.stringify({ userId: user.userId }), {
     headers,
   });
 
