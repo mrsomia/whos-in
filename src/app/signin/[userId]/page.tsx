@@ -37,6 +37,8 @@ export default function Page({ params }: { params: { userId: string } }) {
           console.log("sign in successful");
           console.log(r);
           const j = await r.json();
+          // TODO: Fix the user tupe coming in
+          dispatchUser({ type: "signin", user: null });
         } else {
           console.log(r);
           console.log(r.json());
