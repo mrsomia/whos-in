@@ -15,5 +15,4 @@ const handler = NextAuth(authOptions);
 //   return await handler(request);
 // }
 
-export { handler as GET, handler as POST }
-
+export { handler as GET, handler as POST };

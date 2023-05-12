@@ -18,10 +18,10 @@ export const authOptions: NextAuthOptions = {
         auth: {
           user: process.env.EMAIL_SERVER_USER,
           pass: process.env.EMAIL_SERVER_PASSWORD,
-        }
+        },
       },
       from: process.env.EMAIL_FROM,
-      maxAge: 1* 60 * 60, // How long email links are valid for (1hr)
+      maxAge: 1 * 60 * 60, // How long email links are valid for (1hr)
     }),
   ],
 };
