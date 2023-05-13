@@ -1,3 +1,4 @@
+import Nav from "$/components/Nav";
 import Provider from "$/components/provider";
 import "./globals.css";
 
@@ -13,8 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Provider>{children}</Provider>
+      <body className="">
+        <Provider>
+          <Nav />
+          {children}
+        </Provider>
       </body>
     </html>
   );
