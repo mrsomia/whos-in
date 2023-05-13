@@ -1,10 +1,16 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
+  const router = useRouter();
+  const session = useSession();
+  if (session) {
+    router.push("/dashboard");
+  }
   return (
     <div className="flex h-48 flex-col items-center justify-center gap-8">
       <button onClick={() => signIn("discord")}>Sign in with Discord</button>
