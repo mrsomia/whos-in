@@ -32,9 +32,13 @@
   },
   "devDependencies": {
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.2",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-tailwindcss": "^0.2.8",
-    "prisma": "^4.13.0",
-    "husky": "^8.0.0"
+    "prisma": "^4.13.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,jsx,tsx}": "eslint --fix"
   }
 }
