@@ -14,13 +14,13 @@ export default function Page() {
 
   if (status === "loading") {
     return (
-      <main>
+      <main className="w-100 flex justify-center">
         <h1>Loading</h1>
       </main>
     );
   }
   return (
-    <main>
+    <main className="w-100 flex justify-center">
       <h1>signed in </h1>
     </main>
   );

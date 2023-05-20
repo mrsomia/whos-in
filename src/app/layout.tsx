@@ -17,7 +17,7 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <body className="">
+      <body className="bg-stone-800 text-white">
         <Provider session={session}>
           <Nav />
           {children}

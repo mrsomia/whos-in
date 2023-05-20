@@ -3,19 +3,21 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Nav() {
-  const session = useSession();
+  const { status } = useSession();
   return (
-    <nav className="m-auto my-8 w-max">
-      <ul className="flex w-max max-w-6xl list-none justify-between gap-8">
+    <nav className="w-100 m-auto my-8">
+      <ul className=" w-100 mx-8 my-12 flex list-none justify-between md:mx-auto md:max-w-2xl">
         <li>Home</li>
-        {session ? (
+        {status === "unauthenticated" ? (
           <li>
-            {" "}
-            <button onClick={() => signOut()}>Sign out</button>
+            <button className="rounded-xl bg-orange-600 p-4 px-10 hover:bg-orange-700">
+              <Link href="/signin">Sign In</Link>
+            </button>
           </li>
         ) : (
           <li>
-            <Link href="/signin">Sign In</Link>
+            {" "}
+            <button onClick={() => signOut()}>Sign out</button>
           </li>
         )}
       </ul>

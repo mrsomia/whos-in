@@ -15,13 +15,14 @@ export default function SignIn() {
     <div className="flex h-48 flex-col items-center justify-center gap-8">
       <button onClick={() => signIn("discord")}>Sign in with Discord</button>
 
-      <div>
-        <label htmlFor="email">email</label>
+      <div className="flex flex-col gap-4">
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          className="m-4 w-64 p-3 px-6 text-center text-black"
         />
         <button onClick={() => signIn("email", { email })}>
           Sign in with email
