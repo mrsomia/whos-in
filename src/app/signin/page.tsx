@@ -7,8 +7,8 @@ import { useState } from "react";
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const router = useRouter();
-  const session = useSession();
-  if (session) {
+  const { status } = useSession();
+  if (status === "authenticated") {
     router.push("/dashboard");
   }
   return (
