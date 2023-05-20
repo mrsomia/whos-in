@@ -15,7 +15,7 @@ export default function Page() {
   if (status === "loading") {
     return (
       <main>
-        <h1>Loading or not authenticated...</h1>
+        <h1>Loading</h1>
       </main>
     );
   }
