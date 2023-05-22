@@ -1,6 +1,6 @@
-import Nav from "$/components/Nav";
-import Provider from "$/components/provider";
-import { authOptions } from "$/lib/auth";
+import Nav from "@/components/Nav";
+import Provider from "@/components/provider";
+import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import "./globals.css";
 
