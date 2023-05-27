@@ -24,4 +24,7 @@ export const authOptions: NextAuthOptions = {
       maxAge: 1 * 60 * 60, // How long email links are valid for (1hr)
     }),
   ],
+  pages: {
+    signIn: "/signin",
+  },
 };
