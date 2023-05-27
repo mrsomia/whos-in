@@ -16,54 +16,58 @@ export default function SignIn() {
     router.push("/dashboard");
   }
   return (
-    <Form.Root>
-      <div className="flex flex-col items-center justify-center gap-8">
-        <button
-          className="min-w-60 flex items-center justify-center gap-4 rounded-md bg-[#5865F2] p-4 px-8"
-          onClick={() => signIn("discord")}
-        >
-          <div className="">
-            <Image
-              src={DiscordLogo}
-              height={38}
-              width={36}
-              alt="discord logo"
-            />
-          </div>
-          <div>
-            <span className="font-semibold">Sign in with Discord</span>
-          </div>
-        </button>
-
-        <div className="h-1 border-gray-100"></div>
-
-        <div className="flex flex-col">
-          <Form.Field name="email" className="m-4 flex flex-col gap-4">
-            <Form.Label className="text-lg font-bold">Email</Form.Label>
-            <Form.Message className="text-red-400" match="typeMismatch">
-              Please provide a valid email
-            </Form.Message>
-            <Form.Control asChild>
-              <input
-                type="email"
-                id="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                className="w-64 p-3 px-6 text-center text-black"
+    <main className="flex min-h-[65vh] items-center justify-center md:my-16 md:min-h-full">
+      <Form.Root>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <button
+            className="min-w-60 flex items-center justify-center gap-4 rounded-md bg-[#5865F2] p-4 px-8"
+            onClick={() => signIn("discord")}
+          >
+            <div className="">
+              <Image
+                src={DiscordLogo}
+                height={38}
+                width={36}
+                alt="discord logo"
               />
-            </Form.Control>
-          </Form.Field>
+            </div>
+            <div>
+              <span className="font-semibold">Sign in with Discord</span>
+            </div>
+          </button>
 
-          <Form.Submit asChild>
-            <button
-              className="m-4 rounded-xl bg-orange-600 p-2 hover:bg-orange-700"
-              onClick={() => signIn("email", { email })}
-            >
-              Sign in with email
-            </button>
-          </Form.Submit>
+          <hr className="w-100 m-8 h-1 border-t border-white bg-white" />
+
+          <div className="flex flex-col">
+            <Form.Field name="email" className="m-4 flex flex-col gap-4">
+              <div className="w-100 flex gap-4">
+                <Form.Label className="text-lg font-semibold">Email</Form.Label>
+                <Form.Message className="text-red-400" match="typeMismatch">
+                  Please provide a valid email
+                </Form.Message>
+              </div>
+              <Form.Control asChild>
+                <input
+                  type="email"
+                  id="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  className="w-64 p-3 px-6 text-center text-black"
+                />
+              </Form.Control>
+            </Form.Field>
+
+            <Form.Submit asChild>
+              <button
+                className="m-4 rounded-xl bg-orange-600 p-2 hover:bg-orange-700"
+                onClick={() => signIn("email", { email })}
+              >
+                Sign in with email
+              </button>
+            </Form.Submit>
+          </div>
         </div>
-      </div>
-    </Form.Root>
+      </Form.Root>
+    </main>
   );
 }
