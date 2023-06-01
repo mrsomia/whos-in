@@ -3,7 +3,6 @@
 import { twMerge } from "tailwind-merge";
 
 export function Card({
-  title,
   children,
   className,
 }: {
@@ -19,14 +18,13 @@ export function Card({
       )}
     >
       {children}
-
-      <div></div>
+      {/* <div></div> */}
     </div>
   );
 }
 
 export function CardBody({ children }: { children: React.ReactNode }) {
-  return <div className="space-y-2 p-6">{children}</div>;
+  return <div className="space-y-2 p-4">{children}</div>;
 }
 
 export function CardHeader({
@@ -39,7 +37,7 @@ export function CardHeader({
   className?: string;
 }) {
   return (
-    <div className={twMerge(className, "space-y-1 p-6")}>
+    <div className={twMerge(className, "space-y-1 p-4")}>
       <h1 className="text-lg font-semibold leading-none">{title}</h1>
       {subheading && <p className="text-sm opacity-70">{subheading}</p>}
     </div>
