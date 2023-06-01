@@ -3,10 +3,12 @@
 import { twMerge } from "tailwind-merge";
 
 export function Card({
-  className,
   title,
+  children,
+  className,
 }: {
   title: string;
+  children?: React.ReactNode;
   className?: string;
 }) {
   return (
@@ -16,18 +18,15 @@ export function Card({
         `shadowm-sm m-4 flex w-[360px] flex-col space-y-2 rounded-lg border border-gray-500 p-2`
       )}
     >
-      <CardHeader title={title} subheading="Lorem psum dolor sit amet." />
-      <div className="space-y-2 p-6">
-        <div>
-          <h5>Event title</h5>
-        </div>
-        <div>
-          <h5>Event title</h5>
-        </div>
-      </div>
+      {children}
+
       <div></div>
     </div>
   );
+}
+
+export function CardBody({ children }: { children: React.ReactNode }) {
+  return <div className="space-y-2 p-6">{children}</div>;
 }
 
 export function CardHeader({
