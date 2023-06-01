@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/Card";
+import { Card } from "@/components/Card";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -34,7 +34,7 @@ export default function Page() {
     );
   }
   return (
-    <main className="flex flex-col w-screen justify-center items-center">
+    <main className="flex w-screen flex-col items-center justify-center">
       <h1>signed in as {session.data.user?.email}</h1>
       <Card title="Upcoming events" />
     </main>
