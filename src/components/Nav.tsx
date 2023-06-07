@@ -16,7 +16,7 @@ export default function Nav() {
             </Link>
           </NavigationMenu.Link>
         </NavigationMenu.Item>
-        {status === "unauthenticated" ? (
+        {status !== "authenticated" ? (
           <NavigationMenu.Item className="rounded-xl bg-orange-600 p-2 px-6 hover:bg-orange-700">
             <NavigationMenu.Link asChild>
               <Link href="/signin">Sign In</Link>
