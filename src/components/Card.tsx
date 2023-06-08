@@ -29,17 +29,18 @@ export function CardBody({ children }: { children: React.ReactNode }) {
 
 export function CardHeader({
   className,
-  subheading,
-  title,
+  children,
 }: {
-  title: string;
-  subheading?: string;
   className?: string;
+  children?: React.ReactNode;
 }) {
-  return (
-    <div className={twMerge(className, "space-y-1 p-4")}>
-      <h1 className="text-lg font-semibold leading-none">{title}</h1>
-      {subheading && <p className="text-sm opacity-70">{subheading}</p>}
-    </div>
-  );
+  return <div className={twMerge(className, "space-y-1 p-4")}>{children}</div>;
+}
+
+export function CardTitle({ children }: { children: React.ReactNode }) {
+  return <h1 className="text-lg font-semibold leading-none">{children}</h1>;
+}
+
+export function CardDescription({ children }: { children: React.ReactNode }) {
+  return <p className="text-sm opacity-70">{children}</p>;
 }

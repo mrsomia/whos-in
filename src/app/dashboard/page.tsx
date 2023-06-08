@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardBody, CardHeader } from "@/components/Card";
+import {
+  Card,
+  CardBody,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/Card";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -37,10 +43,10 @@ export default function Page() {
     <main className="flex w-screen flex-col items-center justify-center">
       <h1>signed in as {session.data.user?.email}</h1>
       <Card title="Upcoming events">
-        <CardHeader
-          title="Upcoming events"
-          subheading="Lorem psum dolor sit amet."
-        />
+        <CardHeader>
+          <CardTitle>Upcoming events</CardTitle>
+          <CardDescription>Lorem psum dolor sit amet.</CardDescription>
+        </CardHeader>
         <CardBody>
           <div>
             <h5>Event title</h5>
@@ -51,7 +57,9 @@ export default function Page() {
         </CardBody>
       </Card>
       <Card title="Upcoming events">
-        <CardHeader title="Groups" />
+        <CardHeader>
+          <CardTitle>Groups</CardTitle>
+        </CardHeader>
         <CardBody>
           <div>
             <h5>No Groups found</h5>
