@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/Spinner";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -11,6 +12,10 @@ export default function Page() {
       router.push("/signin");
     },
   });
+
+  if (session.status === "loading") {
+    return <Spinner />;
+  }
 
   return (
     <main className="flex flex-col items-center">
