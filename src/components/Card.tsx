@@ -14,7 +14,7 @@ export function Card({
     <div
       className={twMerge(
         className,
-        `shadowm-sm m-4 flex w-[360px] flex-col space-y-2 rounded-lg border border-gray-500 p-2`
+        `m-4 flex w-[360px] flex-col space-y-2 rounded-lg border border-gray-500 p-2 shadow-sm`
       )}
     >
       {children}
