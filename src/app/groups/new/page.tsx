@@ -19,7 +19,7 @@ export default function Page() {
 
   return (
     <main className="flex flex-col items-center">
-      <h1>This is the new events page</h1>
+      <h1>This is the new groups page</h1>
     </main>
   );
 }
