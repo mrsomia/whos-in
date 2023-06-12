@@ -1,6 +1,7 @@
 "use client";
 
 import Spinner from "@/components/Spinner";
+import { Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -19,7 +20,17 @@ export default function Page() {
 
   return (
     <main className="flex flex-col items-center">
-      <h1>This is the events page</h1>
+      <div className="m-4 w-[360px] rounded-lg border border-gray-500 p-4">
+        <div className="flex justify-between ">
+          <h1 className="text-xl font-bold md:text-2xl">Events</h1>
+          <button className="rounded-md bg-orange-600 p-2">
+            <Plus />
+          </button>
+        </div>
+        <div>
+          <p>No new events</p>
+        </div>
+      </div>
     </main>
   );
 }
