@@ -31,6 +31,7 @@ export default function Page() {
           </Link>
         </div>
         <div>
+          {/* Text for when no groups are found */}
           <p>You are not in any groups, join one or create one</p>
         </div>
       </div>
