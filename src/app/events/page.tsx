@@ -1,6 +1,8 @@
 "use client";
 
 import Spinner from "@/components/Spinner";
+import Event from "@/components/events";
+import { events } from "@/mocks/events";
 import { Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -23,15 +25,20 @@ export default function Page() {
     <main className="flex flex-col items-center">
       <div className="m-4 w-[360px] rounded-lg border border-gray-500 p-4">
         <div className="flex justify-between ">
-          <h1 className="text-xl font-bold md:text-2xl">Events</h1>
+          <h1 className="p-2 text-xl font-bold md:text-2xl">Events</h1>
           <Link href="/events/new">
             <button className="rounded-md bg-orange-600 p-2">
               <Plus />
             </button>
           </Link>
         </div>
-        <div>
-          <p>No new events</p>
+        <div className="flex flex-col space-y-2">
+          {/* Text for when no new events are present */}
+          {events ? (
+            events.map((event) => <Event key={event.id} event={event} />)
+          ) : (
+            <p>No new events</p>
+          )}
         </div>
       </div>
     </main>
