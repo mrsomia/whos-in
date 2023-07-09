@@ -24,55 +24,83 @@ export default function Page() {
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-bold md:text-2xl">New Event</h1>
         </div>
-        <div>
-          <Form.Root className="my-4 flex flex-col items-center justify-between">
-            <Form.Field className="min-w-full" name="eventName">
-              <div className="flex items-baseline justify-between">
-                <Form.Label className="">Name</Form.Label>
-                <Form.Message className="" match="valueMissing">
-                  Please enter an event name
-                </Form.Message>
+        <div className="mt-4">
+          <div className="flex w-full flex-col items-center">
+            <Form.Root className="my-4 flex w-4/5 flex-col items-center justify-between space-y-4">
+              <Form.Field
+                className="flex w-full flex-col space-y-1"
+                name="eventName"
+              >
+                <div className="flex items-baseline justify-between">
+                  <Form.Label className="">Name</Form.Label>
+                  <Form.Message className="text-red-400" match="valueMissing">
+                    Please enter an event name
+                  </Form.Message>
+                </div>
+                <Form.Control asChild>
+                  <input
+                    type="text"
+                    required
+                    className="w-full rounded-s p-2 text-black"
+                  />
+                </Form.Control>
+              </Form.Field>
+              <Form.Field
+                className="flex w-full flex-col space-y-1"
+                name="date"
+              >
+                <div className="flex items-baseline justify-between">
+                  <Form.Label>Date</Form.Label>
+                  <Form.Message className="text-red-400" match="valueMissing">
+                    Please enter an event date
+                  </Form.Message>
+                </div>
+                <Form.Control asChild>
+                  <input
+                    type="datetime-local"
+                    required
+                    className="w-full rounded-s p-2 text-black"
+                  />
+                </Form.Control>
+              </Form.Field>
+              <Form.Field
+                className="flex w-full flex-col space-y-1"
+                name="location"
+              >
+                <div className="flex items-baseline justify-between">
+                  <Form.Label>Location</Form.Label>
+                  <Form.Message className="text-red-400" match="valueMissing">
+                    Please enter an event location
+                  </Form.Message>
+                </div>
+                <Form.Control asChild>
+                  <input
+                    type="text"
+                    required
+                    className="w-full rounded-s p-2 text-black"
+                  />
+                </Form.Control>
+              </Form.Field>
+              <Form.Field
+                className="flex w-full flex-col space-y-1"
+                name="description"
+              >
+                <div className="flex items-baseline justify-between">
+                  <Form.Label>Description</Form.Label>
+                </div>
+                <Form.Control asChild>
+                  <textarea className="rounded-s p-2 text-black" />
+                </Form.Control>
+              </Form.Field>
+              <div className="pt-6">
+                <Form.Submit asChild>
+                  <button className="rounded-xl bg-orange-500 px-6 py-2">
+                    Submit
+                  </button>
+                </Form.Submit>
               </div>
-              <Form.Control asChild>
-                <input type="text" />
-              </Form.Control>
-            </Form.Field>
-            <Form.Field className="" name="date">
-              <div className="flex items-baseline justify-between">
-                <Form.Label>Date</Form.Label>
-                <Form.Message className="" match="valueMissing">
-                  Please enter an event date
-                </Form.Message>
-              </div>
-              <Form.Control asChild>
-                <input type="datetime-local" />
-              </Form.Control>
-            </Form.Field>
-            <Form.Field className="" name="location">
-              <div className="flex items-baseline justify-between">
-                <Form.Label>Location</Form.Label>
-                <Form.Message match="valueMissing">
-                  Please enter an event location
-                </Form.Message>
-              </div>
-              <Form.Control asChild>
-                <input type="text" />
-              </Form.Control>
-            </Form.Field>
-            <Form.Field name="description">
-              <div className="flex items-baseline justify-between">
-                <Form.Label>Description</Form.Label>
-              </div>
-              <Form.Control asChild>
-                <textarea />
-              </Form.Control>
-            </Form.Field>
-            <Form.Submit asChild>
-              <button className="mt-6 rounded-xl bg-orange-500 p-4">
-                Submit
-              </button>
-            </Form.Submit>
-          </Form.Root>
+            </Form.Root>
+          </div>
         </div>
       </div>
     </main>
