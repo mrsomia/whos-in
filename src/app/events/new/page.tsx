@@ -6,6 +6,12 @@ import * as Select from "@radix-ui/react-select";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+const groups = [
+  { id: 1, name: "Poker night" },
+  { id: 2, name: "Fifa tournament" },
+  { id: 3, name: "Games night" },
+];
+
 export default function Page() {
   const router = useRouter();
   const session = useSession({
@@ -109,6 +115,47 @@ export default function Page() {
                           <Select.Item value="Monthly" className="p-1 py-2">
                             <Select.ItemText>Monthly</Select.ItemText>
                           </Select.Item>
+                        </Select.Viewport>
+                      </Select.Content>
+                    </Select.Portal>
+                  </Select.Root>
+                </Form.Control>
+              </Form.Field>
+
+              <Form.Field
+                name="group"
+                className="flex w-full flex-col space-y-2"
+                aria-required="true"
+              >
+                <div className="flex items-baseline justify-between">
+                  <Form.Label>Group</Form.Label>
+                </div>
+                <Form.Control asChild>
+                  <Select.Root>
+                    <Select.Trigger
+                      className="bg-white py-2 text-black"
+                      aria-label="Group"
+                    >
+                      <Select.Value placeholder="" />
+                      <Select.Icon className="text-black"></Select.Icon>
+                    </Select.Trigger>
+
+                    <Select.Portal>
+                      <Select.Content
+                        side="bottom"
+                        position="popper"
+                        className="w-[262px] rounded-s bg-slate-700 p-2"
+                      >
+                        <Select.Viewport className="p-2">
+                          {groups.map((group) => (
+                            <Select.Item
+                              key={group.id}
+                              value={group.id.toString()}
+                              className="p-1 py-2"
+                            >
+                              <Select.ItemText>{group.name}</Select.ItemText>
+                            </Select.Item>
+                          ))}
                         </Select.Viewport>
                       </Select.Content>
                     </Select.Portal>
