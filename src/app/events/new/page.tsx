@@ -130,7 +130,7 @@ export default function Page() {
                 <div className="flex items-baseline justify-between">
                   <Form.Label>Group</Form.Label>
                 </div>
-                <Form.Control asChild>
+                <Form.Control asChild required>
                   <Select.Root>
                     <Select.Trigger
                       className="bg-white py-2 text-black"
