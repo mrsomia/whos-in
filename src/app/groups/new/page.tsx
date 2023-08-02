@@ -4,8 +4,11 @@ import Spinner from "@/components/Spinner";
 import * as Form from "@radix-ui/react-form";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState, type FormEvent } from "react";
 
 export default function Page() {
+  const [groupName, setGroupName] = useState("");
+  const [description, setDescription] = useState("");
   const router = useRouter();
   const session = useSession({
     required: true,
@@ -13,6 +16,25 @@ export default function Page() {
       router.push("/signin");
     },
   });
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      console.log("Sending payload");
+      const r = await fetch("/api/group", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          groupName,
+          description,
+        }),
+      });
+    } catch (e) {
+      console.error(`Error creating new group:\n${e}`);
+    }
+  };
 
   if (session.status === "loading") {
     return <Spinner />;
@@ -26,10 +48,13 @@ export default function Page() {
         </div>
         <div className="mt-4">
           <div className="flex w-full flex-col items-center">
-            <Form.Root className="my-4 flex w-4/5 flex-col items-center justify-between space-y-4">
+            <Form.Root
+              className="my-4 flex w-4/5 flex-col items-center justify-between space-y-4"
+              onSubmit={(e) => handleSubmit(e)}
+            >
               <Form.Field
                 className="flex w-full flex-col space-y-1"
-                name="eventName"
+                name="groupName"
               >
                 <div className="flex items-baseline justify-between">
                   <Form.Label className="">Name</Form.Label>
@@ -42,6 +67,8 @@ export default function Page() {
                     type="text"
                     required
                     className="w-full rounded-s p-2 text-black"
+                    value={groupName}
+                    onChange={(e) => setGroupName(e.target.value)}
                   />
                 </Form.Control>
               </Form.Field>
@@ -54,7 +81,11 @@ export default function Page() {
                   <Form.Label>Description</Form.Label>
                 </div>
                 <Form.Control asChild>
-                  <textarea className="rounded-s p-2 text-black" />
+                  <textarea
+                    className="rounded-s p-2 text-black"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
                 </Form.Control>
               </Form.Field>
 
