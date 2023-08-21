@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardBody,
@@ -7,26 +5,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/Card";
-import Spinner from "@/components/Spinner";
-import { useSession } from "next-auth/react";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
-export default function Page() {
-  const router = useRouter();
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/signin");
-    },
-  });
-
-  if (session.status === "loading") {
-    return <Spinner />;
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/signin");
   }
   return (
     <main className="flex w-screen flex-col items-center justify-center">
-      <h1>signed in as {session.data.user?.email}</h1>
+      <h1>signed in as {session.user?.email}</h1>
       <Card title="Upcoming events">
         <CardHeader>
           <Link href="/events">

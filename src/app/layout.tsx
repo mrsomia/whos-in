@@ -20,8 +20,8 @@ export default async function RootLayout({
       <body className="bg-slate-900 text-white">
         <Provider session={session}>
           <Nav />
-          {children}
         </Provider>
+        {children}
       </body>
     </html>
   );
