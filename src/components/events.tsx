@@ -1,5 +1,3 @@
-"use client";
-
 import { z } from "zod";
 
 const eventSchema = z.object({

@@ -1,24 +1,15 @@
-"use client";
-
-import Spinner from "@/components/Spinner";
 import Event from "@/components/events";
+import { authOptions } from "@/lib/auth";
 import { events } from "@/mocks/events";
 import { Plus } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
-export default function Page() {
-  const router = useRouter();
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/signin");
-    },
-  });
-
-  if (session.status === "loading") {
-    return <Spinner />;
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/signin");
   }
 
   return (
