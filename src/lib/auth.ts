@@ -1,11 +1,11 @@
-import { db } from "@/lib/db";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { db } from "@/db/index";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { type NextAuthOptions } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import EmailProvider from "next-auth/providers/email";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(db),
+  adapter: DrizzleAdapter(db),
   providers: [
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID,
