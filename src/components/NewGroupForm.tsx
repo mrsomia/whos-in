@@ -1,5 +1,6 @@
 "use client";
 
+import { createGroup } from "@/actions/groupActions";
 import * as Form from "@radix-ui/react-form";
 import { useState, type FormEvent } from "react";
 
@@ -10,16 +11,11 @@ export default function NewGroupForm() {
     e.preventDefault();
     try {
       console.log("Sending payload");
-      const r = await fetch("/api/group", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          groupName,
-          description,
-        }),
-      });
+      await createGroup({ groupName, description });
+      if (!r.ok) {
+        console.error(`Error creating group`);
+        console.error(`Error creating group`);
+      }
     } catch (e) {
       console.error(`Error creating new group:\n${e}`);
     }
@@ -31,13 +27,14 @@ export default function NewGroupForm() {
     >
       <Form.Field className="flex w-full flex-col space-y-1" name="groupName">
         <div className="flex items-baseline justify-between">
-          <Form.Label className="">Name</Form.Label>
+          <Form.Label htmlFor="group">Name</Form.Label>
           <Form.Message className="text-red-400" match="valueMissing">
             Please enter a group name
           </Form.Message>
         </div>
         <Form.Control asChild>
           <input
+            name="group"
             type="text"
             required
             className="w-full rounded-s p-2 text-black"
@@ -49,10 +46,11 @@ export default function NewGroupForm() {
 
       <Form.Field className="flex w-full flex-col space-y-1" name="description">
         <div className="flex items-baseline justify-between">
-          <Form.Label>Description</Form.Label>
+          <Form.Label htmlFor="description">Description</Form.Label>
         </div>
         <Form.Control asChild>
           <textarea
+            name="description"
             className="rounded-s p-2 text-black"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
