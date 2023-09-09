@@ -1,7 +1,8 @@
 "use server";
 
 import { db } from "@/db";
-import { groups, users, usersToGroups } from "@/db/schema";
+import { createGroupForUser } from "@/db/groups";
+import { users } from "@/db/schema";
 import { authOptions } from "@/lib/auth";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
@@ -14,7 +15,6 @@ const createGroupSchema = z.object({
 });
 
 export async function createGroup(newGroup: unknown) {
-  console.log({ newGroup });
   const session = await getServerSession(authOptions);
   if (!session) {
     throw new Error("unauthenticated");
@@ -35,25 +35,10 @@ export async function createGroup(newGroup: unknown) {
     throw new Error("Unable to find user in DB, with their email");
   }
 
-  await db.transaction(async (tx) => {
-    const newGroupResult = await tx
-      .insert(groups)
-      .values({ name: parsed.groupName, description: parsed.description })
-      .returning();
-
-    const createdGroup = newGroupResult.at(0);
-
-    if (!createdGroup) {
-      tx.rollback();
-      return;
-    }
-
-    await tx.insert(usersToGroups).values({
-      userId: user.id,
-      groupId: createdGroup.id,
-      role: "ADMIN",
-    });
-  });
+  await createGroupForUser(
+    { name: parsed.groupName, description: parsed.description },
+    user
+  );
 
   redirect("/dashboard");
 }
