@@ -1,3 +1,5 @@
+import Group from "@/components/Group";
+import { getGroupsForSession } from "@/db/groups";
 import { authOptions } from "@/lib/auth";
 import { Plus } from "lucide-react";
 import { getServerSession } from "next-auth";
@@ -9,6 +11,8 @@ export default async function Page() {
   if (!session) {
     redirect("/signin");
   }
+
+  const groups = await getGroupsForSession(session);
 
   return (
     <main className="flex flex-col items-center">
@@ -22,8 +26,11 @@ export default async function Page() {
           </Link>
         </div>
         <div className="">
-          {/* Text for when no groups are found */}
-          <p>You are not in any groups, join one or create one</p>
+          {groups.length > 0 ? (
+            groups.map((group) => <Group group={group} key={group.id} />)
+          ) : (
+            <p>You are not in any groups, join one or create one</p>
+          )}
         </div>
       </div>
     </main>
